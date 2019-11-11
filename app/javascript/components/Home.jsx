@@ -1,22 +1,38 @@
 import React    from "react";
 import { Link } from "react-router-dom";
+import Aside    from "../components/Aside";
 
 export default () => (
-  <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
-    <div className="jumbotron jumbotron-fluid bg-transparent">
-      <div className="container secondary-color">
-          <h1 className="display-4">Cinemapp</h1>
-        <p className="lead">
-          This is the new cinema app for booking movies in town.
-        </p>
-        <hr className="my-4" />
-        <Link
-          to="/movies"
-          className="btn btn-lg custom-button"
-          role="button"
-        >
-          View Movies
-        </Link>
+  <div className="container">
+    <div className="row">
+      <div className="aside col-md-2">
+        <div>
+          <Aside />
+        </div>
+      </div>
+      <div className="col-md-8">
+        <div>
+          <div>
+            <div>
+              <h1>Cinemapp</h1>
+              <p>
+                Place a table for reservations THERE
+                <p>Search icon: <span class="glyphicon glyphicon-search"></span></p>
+              </p>
+              <hr/>
+              <Link
+                to="/movies"
+                className="btn btn-lg custom-button"
+                role="button"
+              >
+                View Movies
+              </Link>
+              <div>
+                <h1> Place a chunk of code here </h1>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

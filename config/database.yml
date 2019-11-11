@@ -22,8 +22,8 @@ default: &default
   pool: <%= ENV['PREWORK_DATABASE_POOL_LIMIT'] || 4 %>
   host: localhost
   port: 5432
-  username: postgres
-  password: postgres
+  username:  "postgres" 
+  password: "docker" 
 
 development:
   <<: *default
