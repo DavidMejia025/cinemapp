@@ -1,9 +1,6 @@
 class Api::V1::MoviesController < ApplicationController
   def index
-    dates = filter_by_dates
-    @movies = Movie.all.where(
-      "start_day >= ? and end_day <=  ?",dates[:start_day], dates[:end_day])
-    ).order("start_day DESC")
+    get_movies
 
     render json: {movies: @movies}.to_json, status: 200
   end
@@ -22,10 +19,19 @@ class Api::V1::MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:name, :description, :image_url,:dates, :start_day, :end_day)
   end
+
+  def get_movies
+    dates = filter_by_dates
+
+    @movies = Movie.all.where(
+      "start_day >= ? and end_day <= ?",dates[:start_day], dates[:end_day]
+    ).order("start_day DESC")
+  end
+
   def filter_by_dates
     {
-      start_day: params[:start_day],
-      end_day:   params[:end_day]
+      start_day: Date.parse(params[:start_day]) || Date.new(2019,10,1),
+      end_day:   Date.parse(params[:end_day])   || Date.new(2020,10,1)
     }
   end
 

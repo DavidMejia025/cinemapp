@@ -2,7 +2,7 @@
 #
 # Table name: reservations
 #
-#  id           :bigint           not null, primary key
+#  id           :integer          not null, primary key
 #  movie_id     :integer
 #  visitor_id   :integer
 #  name         :string
@@ -10,6 +10,7 @@
 #  mobile_phone :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  day          :date
 #
 
 class Reservation < ApplicationRecord

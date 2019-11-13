@@ -1,7 +1,13 @@
 class Api::V1::ReservationController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
+  def index
+    render json: {reservations: Reservations.all}.to_json, status:200
+  end
+
   def create
     puts params
-    movie = Movie.find(params[:id])
+    movie = Movie.find(params[:movie_id])
 
     begin
       movie.reservations.create!(
@@ -18,6 +24,6 @@ class Api::V1::ReservationController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:visitor_id, :email, :name,:mobile_phone, :day)
+    params.require(:reservation).permit(:visitor_id, :email, :name, :mobile_phone, :day)
   end
 end
