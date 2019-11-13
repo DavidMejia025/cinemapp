@@ -21,7 +21,7 @@ class Reservation < ApplicationRecord
    def verify_seats
      movie = Movie.find(self.movie_id)
 
-     if (movie.reservations.where(day: self.day).count > 10)
+     if (movie.reservations.where(day: self.day).count > 9)
        raise Exception.new('There are no more seats for this movie this day.')
      end
    end

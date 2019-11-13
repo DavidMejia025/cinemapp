@@ -2,7 +2,8 @@
 #
 #                         Prefix Verb URI Pattern                                                                              Controller#Action
 #                           root GET  /                                                                                        homepage#index
-# api_v1_movie_reservation_index POST /api/v1/movies/:movie_id/reservation(.:format)                                           api/v1/reservation#create
+# api_v1_movie_reservation_index GET  /api/v1/movies/:movie_id/reservation(.:format)                                           api/v1/reservation#index
+#                                POST /api/v1/movies/:movie_id/reservation(.:format)                                           api/v1/reservation#create
 #                  api_v1_movies GET  /api/v1/movies(.:format)                                                                 api/v1/movies#index
 #                                POST /api/v1/movies(.:format)                                                                 api/v1/movies#create
 #             rails_service_blob GET  /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
@@ -14,12 +15,13 @@
 
 Rails.application.routes.draw do
   root 'homepage#index'
-  
+
   namespace :api do
     namespace :v1 do
       resources :movies, only: [:index, :create] do
-        resources :reservation, only: :create
+        resources :reservation, only: [:create, :index]
       end
     end
   end
+  get '/api/v1/reservations', to: 'api/v1/reservation#get_all'
 end

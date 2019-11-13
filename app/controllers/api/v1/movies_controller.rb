@@ -27,14 +27,7 @@ class Api::V1::MoviesController < ApplicationController
       "start_day >= ? and end_day <= ?",dates[:start_day], dates[:end_day]
     ).order("start_day DESC")
   end
-
-  def filter_by_dates
-    {
-      start_day: Date.parse(params[:start_day]) || Date.new(2019,10,1),
-      end_day:   Date.parse(params[:end_day])   || Date.new(2020,10,1)
-    }
-  end
-
+  
   def movie
     @movie ||= Movie.find(params[:id])
   end

@@ -1,0 +1,9 @@
+Query all movies:
+  curl -i -H "Accept: application/json" "http://localhost:3000/api/v1/movies?start_day=2019/10/1&end_day=2019/12/12"
+Query all reservations:
+  .
+Create Movie
+
+Create Reservation
+  curl -d '{"reservation": {"visitor_id": 123, "email": "david@one.com", "name": "david", "mobile_phone": 123, "day": "2019/11/10"}}' -H "Content-Type: application/json" -X POST http://localhost:3000/api/v1/movies/1/reservation
+
