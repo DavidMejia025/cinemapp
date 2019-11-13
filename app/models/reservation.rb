@@ -13,5 +13,15 @@
 #
 
 class Reservation < ApplicationRecord
+  before_save :verify_seats
   belongs_to :movie
+
+  private
+   def verify_seats
+     movie = Movie.find(self.movie_id)
+
+     if (movie.reservations.where(day: self.day).count > 10)
+       raise Exception.new('There are no more seats for this movie this day.')
+     end
+   end
 end

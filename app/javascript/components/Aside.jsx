@@ -5,24 +5,24 @@ export default () => (
   <div>
     <div>
       <div>
-        <div className="aside-break"> </div>
-        <h1> <span className="aside-title"> Place </span> it</h1>
-        <div className="aside-break"> </div>
+        <div className="aside-break1"> </div>
+        <h1 className="subtitle"> <span className="aside-title"> Place </span>it</h1>
+        <div className="aside-break2"> </div>
         <Link
           to="/reservations"
           className="btn btn-lg"
           role="button"
         >
-          <p>Search icon: <span class="glyphicon glyphicon-search"></span></p>
+          <p className="link"><span class="glyphicon glyphicon-calendar"></span>      Reservations </p>
         </Link>
         <Link
           to="/movies"
           className="btn btn-lg"
           role="button"
         >
-          <span class="glyphicon glyphicon-film">  Movies</span>  Movies
+          <p className="link"> <span class="glyphicon glyphicon-film"></span>        Movies </p>
         </Link>
-        <div className="aside-break2"> </div>
+        <div className="aside-break3"> </div>
       </div>
     </div>
   </div>

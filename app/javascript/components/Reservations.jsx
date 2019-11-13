@@ -1,24 +1,28 @@
-import React    from "react";
-import { Link } from "react-router-dom";
+import React             from "react";
+import { Link }          from "react-router-dom";
+import Aside             from "../components/Aside";
+import ReservationTable  from "../components/ReservationTable";
+import DateRangePicker   from "../components/DateRange";
 
 export default () => (
-  <div>
-    <div>
-      <div>
-          <h1>Cinemapp</h1>
-        <p className="lead">
-          Place a table for reservations here
-        </p>
-        <hr/>
-        <Link
-          to="/movies"
-          className="btn btn-lg custom-button"
-          role="button"
-        >
-          View Movies
-        </Link>
+  <div className="container">
+    <div className="row">
+      <div className="aside col-md-2">
         <div>
-          <h1> Place a chunk of code here </h1>
+          <Aside />
+        </div>
+      </div>
+      <div className="col-md-8 reservations">
+        <div className="col-md-12 reservations-title">
+          <h1>Reservations list</h1>
+        </div>
+        <div className="col-md-12 date">
+          <p>
+            <DateRangePicker />
+          </p>
+        </div>
+        <div className="col-md-12 reservations-table">
+          <ReservationTable />
         </div>
       </div>
     </div>

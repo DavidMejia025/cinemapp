@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_232058) do
+ActiveRecord::Schema.define(version: 2019_11_13_173750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,8 @@ ActiveRecord::Schema.define(version: 2019_10_22_232058) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "movies_schedules", force: :cascade do |t|
-    t.bigint "movie_id"
-    t.bigint "schedule_id"
-    t.index ["movie_id"], name: "index_movies_schedules_on_movie_id"
-    t.index ["schedule_id"], name: "index_movies_schedules_on_schedule_id"
+    t.date "start_day"
+    t.date "end_day"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -38,12 +33,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_232058) do
     t.integer "mobile_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.date "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date "day"
   end
 
 end

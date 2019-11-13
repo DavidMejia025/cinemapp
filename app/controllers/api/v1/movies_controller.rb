@@ -1,28 +1,32 @@
 class Api::V1::MoviesController < ApplicationController
   def index
-    @movies = Movie.all
-    puts @movies
+    dates = filter_by_dates
+    @movies = Movie.all.where(
+      "start_day >= ? and end_day <=  ?",dates[:start_day], dates[:end_day])
+    ).order("start_day DESC")
+
     render json: {movies: @movies}.to_json, status: 200
   end
 
   def create
-    puts movie_params
     @movie = Movie.create!(name: movie_params[:name],
       description: movie_params[:description],
-      image_url: movie_params[:image_url]
+      image_url:   movie_params[:image_url],
+      start_day:   movie_params[:start_day],
+      end_day:     movie_params[:end_day]
     )
 
-    movie_params[:dates].split.each do|date|
-      @movie.schedules.create(date: Date.parse("#{date}"))
-    end
-
-    p @movie.schedules.count
-
-    render json: {movies: "all fine"}.to_json, status: 200
+    render :ok
   end
 
   def movie_params
-    params.require(:movie).permit(:name, :description, :image_url,:dates)
+    params.require(:movie).permit(:name, :description, :image_url,:dates, :start_day, :end_day)
+  end
+  def filter_by_dates
+    {
+      start_day: params[:start_day],
+      end_day:   params[:end_day]
+    }
   end
 
   def movie
