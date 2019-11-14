@@ -1,4 +1,6 @@
 class Api::V1::MoviesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     get_movies
 
@@ -13,7 +15,7 @@ class Api::V1::MoviesController < ApplicationController
       end_day:     movie_params[:end_day]
     )
 
-    render :ok
+    head :ok
   end
 
   def movie_params
@@ -24,10 +26,10 @@ class Api::V1::MoviesController < ApplicationController
     dates = filter_by_dates
 
     @movies = Movie.all.where(
-      "start_day >= ? and end_day <= ?",dates[:start_day], dates[:end_day]
+      "start_day <= ? and end_day >= ?",dates[:start_day], dates[:end_day]
     ).order("start_day DESC")
   end
-  
+
   def movie
     @movie ||= Movie.find(params[:id])
   end
